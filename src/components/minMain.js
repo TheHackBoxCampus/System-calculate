@@ -1,26 +1,24 @@
-import config from "../storage/config.js"
+let info = [
+document.querySelector('#price'),
+document.querySelector('#expenses'),
+document.querySelector('#percentage')]
 
 export default {
-    innerText(res_worker){
-        let title = document.querySelector('#title')
-        let price = document.querySelector('#price')
-        let renevu = document.querySelector('#renevu')
-        let expenses = document.querySelector('#expenses')
-        let percentage = document.querySelector('#percentage')
+    render_budgets_localStorage(){
+        let types = ['Budget','expenses', 'percentage']
         
-        return (
-        title.innerHTML += res_worker[0],
-        price.innerHTML += res_worker[1],
-        renevu.innerHTML += res_worker[2],
-        expenses.textContent += res_worker[3],
-        percentage.innerHTML += res_worker[4])
-    },
+        for(let x = 0; x < types.length; x++){
+            if(!localStorage.getItem(types[x])) return 
+            //else
+            let tpm = JSON.parse(localStorage.getItem(types[x]))
+            info[x].innerHTML = tpm
+        }
+    },  
 
-    render_text(){ 
-        config.header_text()
-        Object.assign(this, JSON.parse(localStorage.getItem('header')))
-        const ws = new Worker('src/workers/wsText.js')
-        ws.postMessage({resources: this.data.header,  module: 'render_text'})
-        ws.addEventListener('message', r => this.innerText(r.data))
-    }    
+    render_cards_localStorage(div, name_item){
+        if(localStorage.getItem(name_item) == null) return
+
+        let cards = JSON.parse(localStorage.getItem(name_item))
+        for(let x = 0; x < cards.length; x++) div.insertAdjacentHTML('beforeend', cards[x][x])
+    },
 }

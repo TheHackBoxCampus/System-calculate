@@ -1,11 +1,12 @@
+let count = 0
 let operationPlus = {
-    render_plus_card(){
+    render_plus_card(task, dinner){
         let content = `
-        <div class="card" style="width: 18rem;">
+        <div class="card mt-2" id="plus${count++}" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <h5 class="card-title">${task}</h5>
+                <p class="card-text">${dinner}</p>
+                <a href="#" class="btn btn-danger">Delete</a>
             </div>
         </div>
         `
@@ -18,13 +19,26 @@ let operationPlus = {
         return convertion.join('')
     },
 
+    percentage_operation(Current_money, Incoming_money){
+        let total_percentage = String(((Incoming_money * 100) / Current_money).toFixed(2))
+        let convertion = total_percentage.split('')
+        convertion.unshift('%')
+        return (convertion.join(''))
+    },
+
     render_operation(Current_money,Incoming_money){
         let format_current = Current_money.replace('$',' ')
         let total = parseInt(format_current.trim()) + parseInt(Incoming_money) 
-        return this.parse_operation(total)
+        let totalParse = this.parse_operation(total)
+        let percentage = this.percentage_operation(parseInt(format_current.trim()), parseInt(Incoming_money))
+        return [percentage, totalParse]
     }    
 }
 
 self.addEventListener('message', e => { 
-    postMessage(operationPlus[`${e.data.module}`](e.data.resources[1], e.data.resources[0]))    
+    postMessage(
+        [
+         operationPlus[`${e.data.module[0]}`](e.data.resources[1], e.data.resources[0]), 
+         operationPlus[`${e.data.module[1]}`](e.data.resources[2],e.data.resources[0])   
+        ])    
 })

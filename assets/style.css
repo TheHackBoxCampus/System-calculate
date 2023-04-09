@@ -1,0 +1,10 @@
+#container_dinners {
+    background-image: url(img/Background_Budgets.webp);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#percentage {
+    background: rgba(0, 0, 0, 0.4)
+}
