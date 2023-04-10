@@ -6,7 +6,7 @@ let operationLess = {
             <div class="card-body">
                 <h5 class="card-title text-danger">${task}</h5>
                 <p class="card-text text-danger">${dinner}</p>
-                <a href="#" class="btn btn-danger">Delete</a>
+                <a href="#" id="delete" class="btn btn-danger">Delete</a>
             </div>
         </div>
         `
@@ -31,7 +31,7 @@ let operationLess = {
         let Current_value_parse = parseInt(format_current.trim())
         let total = Current_value_parse - parseInt(Incoming_money) 
         let total_parse = this.parse_operation(total)
-        return [total_parse, this.percentage_operation(Current_value_parse, parseInt(Incoming_money))]
+        return [total_parse, this.percentage_operation(Current_value_parse, parseInt(Incoming_money)), Incoming_money]
     } 
 }
 
@@ -42,3 +42,4 @@ self.addEventListener('message', e => {
             operationLess[`${e.data.module[1]}`](e.data.resources[2], e.data.resources[0])
         ])
 })
+
