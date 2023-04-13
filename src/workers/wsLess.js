@@ -1,12 +1,11 @@
-let count = 0
-let operationLess = {
+export let operationLess = {
     render_less_card(task, dinner) {
         let content = `
-        <div class="card mt-2" id="less${count++}" style="width: 18rem;">
+        <div class="card mt-2" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title text-danger">${task}</h5>
-                <p class="card-text text-danger">${dinner}</p>
-                <a href="#" id="delete" class="btn btn-danger">Delete</a>
+                <h5 class="card-title text-dark">${task}</h5>
+                <p class="card-text text-dark">${dinner}</p>
+                <a href="#" id="deleteLess" class="btn btn-danger">Delete</a>
             </div>
         </div>
         `
@@ -32,6 +31,7 @@ let operationLess = {
         let total = Current_value_parse - parseInt(Incoming_money) 
         let total_parse = this.parse_operation(total)
         return [total_parse, this.percentage_operation(Current_value_parse, parseInt(Incoming_money)), Incoming_money]
+        return [total_parse, this.percentage_operation(Current_value_parse, parseInt(Incoming_money)), Incoming_money]
     } 
 }
 
@@ -42,4 +42,6 @@ self.addEventListener('message', e => {
             operationLess[`${e.data.module[1]}`](e.data.resources[2], e.data.resources[0])
         ])
 })
+
+
 

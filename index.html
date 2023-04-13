@@ -5,6 +5,9 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       
+      <!-- APACHE ECHARTS -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.2/echarts.min.js" defer></script>
+
       <!-- Bootstrap CSS -->
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous" defer></script>
@@ -13,7 +16,7 @@
       <link rel="stylesheet" href="assets/style.css">
       <title>Calculate System</title>
   </head>
-  <body>
+  <body class="bg-dark">
         <div class="container-fluid">
             <div class="row" id="container_dinners">
                 <div class="col-12">
@@ -49,7 +52,15 @@
                         <p class="text-danger fs-3" id="div_expenses">EGRESOS</p>
                     </div>
                 </div>
-            </div>       
+            </div>     
+            <div class="row">
+                <div class="col-12 mt-3">
+                    <div class="d-flex flex-column align-items-center" id="container_graphics">
+                        <p class="fs-2 text-light">Grafica de barras</p>
+                        <div id="graphics" class="chart"></div>
+                    </div>
+                </div>
+            </div>  
         </div>
   </body>
 </html>

@@ -1,5 +1,5 @@
 #container_dinners {
-    background-image: url(img/Background_Budgets.webp);
+    background-image: url(img/Background.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -7,4 +7,9 @@
 
 #percentage {
     background: rgba(0, 0, 0, 0.4)
+}
+
+.chart{
+    width: 30em;
+    min-height: 300px;
 }
